@@ -17,6 +17,7 @@ const login = async (req: Request, res: Response) => {
         expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2),
         secure: true,
         httpOnly: true,
+        sameSite: "none"
     })
 
     ApiResponse.ok(res, "User logged in successfully", user);
