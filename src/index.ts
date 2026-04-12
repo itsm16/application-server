@@ -6,9 +6,11 @@ import aiRoutes from './modules/ai/ai.route.js'
 import "dotenv/config"
 
 const PORT = process.env.PORT || 3000
+const origin = process.env.ORIGIN
+console.log(origin)
 
 const app = express()
-app.use(cors({origin: process.env.ORIGIN, credentials: true}))
+app.use(cors({origin, credentials: true}))
 app.use(express.json())
 app.use(cookieParser())
 
