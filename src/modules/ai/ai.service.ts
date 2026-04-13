@@ -28,8 +28,8 @@ const createApplication = async ({userId, company, role, skills, resumeSuggestio
             userId,
             company,
             role,
-            skills,
-            resumeSuggestions
+            skills: skills?.slice(0,6),
+            resumeSuggestions: resumeSuggestions?.slice(0,2)
         })
 
         return application
