@@ -12,7 +12,7 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
     const user = await authService.login(req.body);
 
-    const token = jwt.sign({id: user.id, email: user.email}, 'secret', {expiresIn: '2d'})
+    const token = jwt.sign({ id: user.id, email: user.email }, 'secret', { expiresIn: '2d' })
     const cookie = res.cookie("token", token, {
         expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2),
         secure: true,
@@ -29,7 +29,11 @@ const getMe = async (req: Request & { user?: { id: number; email: string } }, re
 }
 
 const logout = async (req: Request, res: Response) => {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none"
+    });
     ApiResponse.ok(res, "User logged out successfully");
 }
 
