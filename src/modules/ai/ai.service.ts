@@ -29,8 +29,7 @@ const createApplication = async ({userId, company, role, skills, resumeSuggestio
             company,
             role,
             skills,
-            resumeSuggestions,
-            status
+            resumeSuggestions
         })
 
         return application
