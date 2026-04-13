@@ -12,7 +12,7 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
     const user = await authService.login(req.body);
 
-    const token = jwt.sign({ id: user.id, email: user.email }, 'secret', { expiresIn: '2d' })
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.SECRET as string, { expiresIn: '2d' })
     const cookie = res.cookie("token", token, {
         expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2),
         secure: true,

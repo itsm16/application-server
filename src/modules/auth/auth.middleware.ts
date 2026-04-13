@@ -12,7 +12,7 @@ const checkToken = async (req: Request & { user?: any }, res: Response, next: Ne
         throw ApiError.unauthorized("No token provided")
     }
 
-    const decoded = jwt.verify(token, 'secret') as {id: number, email: string}
+    const decoded = jwt.verify(token, process.env.SECRET as string) as {id: number, email: string}
 
     if (!decoded) {
         throw ApiError.unauthorized("Invalid token")
